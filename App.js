@@ -1,8 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Provider as PaperProvider, DefaultTheme, Button } from 'react-native-paper';
+import { View } from 'react-native';
+import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { name as appName } from './app.json';
+import { Provider as ReduxProvider } from 'react-redux'
+import userStore from './src/00-ReduxStores/01-UserStore'
+
+import MainNavigation from './src/01-Views/00-MainNav'
 
 const theme = {
   ...DefaultTheme,
@@ -15,23 +19,11 @@ const theme = {
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
-      <View style={styles.container}>
-        <Text>Open app!</Text>
-        <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
-          Press me
-        </Button>
-        <StatusBar style="auto" />
-      </View>
-    </PaperProvider>
+    <ReduxProvider store={userStore}>
+      <PaperProvider theme={theme}>
+        <MainNavigation />
+      </PaperProvider>
+    </ReduxProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
