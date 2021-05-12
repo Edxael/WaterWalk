@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import NavBar from '../../02-Components/01-NavBar'
+import ChartComp from '../../02-Components/04-ChartComp'
 
 const DashboarComp = (props) => {
   return (
@@ -10,7 +11,9 @@ const DashboarComp = (props) => {
       subTitle={"Account"}
       navigation={props.navigation}
       />
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <View style={styles.container}>
+
+        <ChartComp />
         
         <Text>
           Dashboard Comp
@@ -20,4 +23,14 @@ const DashboarComp = (props) => {
   );
 }
 
+const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: 50,
+    justifyContent: "center",
+    backgroundColor: 'pink'
+  }
+})
+
 export default DashboarComp;
+
+//{ justifyContent: "center", alignItems: "center" }
