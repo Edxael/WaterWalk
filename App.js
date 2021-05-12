@@ -9,13 +9,24 @@ import userStore from './src/00-ReduxStores/01-UserStore'
 
 import MainNavigation from './src/01-Views/00-MainNav'
 
+// Example of rgba() color
+// disabled: 'rgba(0, 0, 0, 0.26)',
+
 const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
-    primary: 'aquamarine',
-    secondary: 'pink',
-    accent: 'yellow',
+    accent: '#C3C9E9',
+    background: '#373F47',
+    disabled: '#d0d3d9',
+    error: '#ff6161'
+    notification: '#f50057',
+    onSurface:'#000000',
+    placeholder: '#e3fffa',
+    primary: '#58abf5',
+    secondary: '#8B89DB',
+    surface: '#ebf2f1',
+    text: '#000000',
   },
 };
 
