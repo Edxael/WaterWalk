@@ -5,6 +5,7 @@ import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
 import { name as appName } from './app.json';
 import { Provider as ReduxProvider } from 'react-redux'
 import userStore from './src/00-ReduxStores/01-UserStore'
+AppRegistry.registerComponent(appName, () => Main);
 
 import MainNavigation from './src/01-Views/00-MainNav'
 
