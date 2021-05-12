@@ -8,15 +8,11 @@ const MainNavigation = () => {
 
     if(isUserLogIn){
        return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
             <YesLogNav/>
-        </View>
     );
     }else {
       return (
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <NoLogNav />
-        </View>
       );
     }
 

@@ -13,11 +13,11 @@ import WaterCalc from './06-WaterCalc'
 
 const Drawer = createDrawerNavigator();
 
-const DashboarComp = () => {
+const DashboarComp2 = () => {
   return (
 
       <NavigationContainer>
-          <Drawer.Navigator  initialRouteName="Dashboard">
+          <Drawer.Navigator>
               <Drawer.Screen name="Dashboard" component={Dashboard} />
               <Drawer.Screen name="Account" component={Account} />
               <Drawer.Screen name="Calendar" component={Calendar} />
@@ -30,4 +30,4 @@ const DashboarComp = () => {
   );
 }
 
-export default DashboarComp;
+export default DashboarComp2;
