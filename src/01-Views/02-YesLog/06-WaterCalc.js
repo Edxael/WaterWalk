@@ -1,12 +1,21 @@
 import React from 'react';
 import { Text, View } from 'react-native';
+import NavBar from '../../02-Components/01-NavBar'
 
-const WaterComp = () => {
+const WaterComp = (props) => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>
-        Water Comp
-      </Text>
+    <View>
+      <NavBar 
+      title={"my title"} 
+      subTitle={"Account"}
+      navigation={props.navigation}
+      />
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        
+        <Text>
+          WaterCalc Comp
+        </Text>
+      </View>
     </View>
   );
 }

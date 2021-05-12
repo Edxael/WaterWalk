@@ -14,6 +14,7 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: 'aquamarine',
+    secondary: 'pink',
     accent: 'yellow',
   },
 };
