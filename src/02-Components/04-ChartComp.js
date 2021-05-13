@@ -12,9 +12,6 @@ async function register() {
 }
 
 const ChartComp = (props) => {
-    // componentDidMount() {
-    //     register();
-    // }
     return (
         <View>
         <View style={{ justifyContent: "center", alignItems: "center" }}>

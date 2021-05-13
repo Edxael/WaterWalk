@@ -14,7 +14,6 @@ const reducer = ( state = initialState, action ) => {
     return state
 }
 
-
 const userStore = createStore(reducer)
 
 export default userStore

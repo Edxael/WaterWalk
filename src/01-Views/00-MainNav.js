@@ -4,9 +4,6 @@ import YesLogNav from './02-YesLog/00-YesLogNav'
 import { connect } from 'react-redux'
 
 const MainNavigation = (props) => {
-    let isUserLogIn = false
-
-    console.log("---------------")
 
     if (props.isUserLogIn){
        return (
