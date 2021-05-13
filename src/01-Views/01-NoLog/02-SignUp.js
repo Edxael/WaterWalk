@@ -1,17 +1,20 @@
 
 import React, {useState} from 'react';
 import { View } from 'react-native';
-import { TextInput, Button, Title} from 'react-native-paper';
+import { TextInput, Button, Title } from 'react-native-paper';
+import { connect } from 'react-redux'
 
 import Login from './01-LogIn'
 
 
 
-const SignUpComponent = ({navigation}) => {
+const SignUpComponent = ({navigation,signInUser}) => {
   const store = {
     firstName: '',
     lastName: '',
-    email: ''
+    email: '',
+    password: '',
+    confirmPassword: ''
   };
 
   let [userData, setUserData] = useState(store)
@@ -49,22 +52,40 @@ const SignUpComponent = ({navigation}) => {
         onChangeText={text => setUserData((state) => ({ ...state, email: text }))}
         mode="outlined"
       />
+
+      <TextInput
+        style={{marginBottom: 10}} 
+        label="Password"
+        placeholder="Password"
+        value={userData.password}
+        onChangeText={text => setUserData((state) => ({ ...state, password: text }))}
+        mode="outlined"
+        secureTextEntry={true}
+      />
+
+      <TextInput
+        style={{marginBottom: 10}} 
+        label="Confirm Password"
+        placeholder="Confirm Password"
+        value={userData.confirmPassword}
+        onChangeText={text => setUserData((state) => ({ ...state, confirmPassword: text }))}
+        mode="outlined"
+        secureTextEntry={true}
+      />
       
       <Button
-        style={{marginBottom: 10}} 
-        icon="camera"
+        style={{marginBottom: 10, paddingTop: 10, paddingBottom: 10}}
         mode="contained"
         onPress={() => {
-            console.log('Signup',userData)
-            // navigation.navigate('SignUp')
-      }}>
+          console.log('Signup', userData)
+          signInUser(userData)
+        }}>
         Sign Up
       </Button>
 
       <Button
-        style={{marginBottom: 10}} 
-        icon="camera"
-        mode="contained"
+        style={{paddingTop: 10, paddingBottom: 10}}
+        mode="outlined"
         onPress={() => {
             console.log('Cancel sign up')
             navigation.navigate('LogIn')
@@ -77,4 +98,10 @@ const SignUpComponent = ({navigation}) => {
   );
 }
 
-export default SignUpComponent;
+function mapDispatcherToProps(dispatch) {
+  return {
+    signInUser: (userData) => dispatch({ type: 'SIGN_UP_USER', userData })
+  }
+}
+
+export default connect(null, mapDispatcherToProps)(SignUpComponent);
