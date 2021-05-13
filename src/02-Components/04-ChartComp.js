@@ -11,7 +11,7 @@ const ChartComp = (props) => {
             </Text>
 
             <Chart
-                style={{ height: 200, width: 350 }}
+                style={{ height: 200, width: 330 }}
                 data={infoData.water}
                 padding={{ left: 40, bottom: 20, right: 20, top: 20 }}
                 xDomain={{ min: infoData.xmin, max: infoData.xmax }}
