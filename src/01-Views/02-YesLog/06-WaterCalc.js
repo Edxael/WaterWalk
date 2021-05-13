@@ -5,14 +5,14 @@ import NavBar from '../../02-Components/01-NavBar'
 import { connect } from 'react-redux'
 
 const WaterComp = ({navigation, addWater, addWeigh}) => {
-  
+
   let [calc, setShowCalc] = useState(false)
   let [weight, setWeight] = useState('')
 
   return (
     <View>
-      <NavBar 
-        title={"my title"} 
+      <NavBar
+        title={"Water Calculation"}
         subTitle={"Account"}
         navigation={navigation}
       />

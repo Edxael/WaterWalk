@@ -20,7 +20,7 @@ const theme = {
     disabled: '#d0d3d9',
     error: '#ff6161',
     notification: '#f50057',
-    onSurface:'#000000',
+    onSurface:'#4E937A',
     primary: '#58abf5',
     secondary: '#8B89DB',
     surface: '#ebf2f1',

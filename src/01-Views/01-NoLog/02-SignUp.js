@@ -8,7 +8,7 @@ import Login from './01-LogIn'
 
 
 
-const SignUpComponent = ({navigation,signInUser}) => {
+const SignUpComponent = ({navigation,signInUser, logInUser}) => {
   const store = {
     firstName: '',
     lastName: '',
@@ -79,6 +79,7 @@ const SignUpComponent = ({navigation,signInUser}) => {
         onPress={() => {
           console.log('Signup', userData)
           signInUser(userData)
+          logInUser()
         }}>
         Sign Up
       </Button>
@@ -100,7 +101,8 @@ const SignUpComponent = ({navigation,signInUser}) => {
 
 function mapDispatcherToProps(dispatch) {
   return {
-    signInUser: (userData) => dispatch({ type: 'SIGN_UP_USER', userData })
+    signInUser: (userData) => dispatch({ type: 'SIGN_UP_USER', userData }),
+    logInUser: () => dispatch({ type: 'LOGIN_USER' })
   }
 }
 

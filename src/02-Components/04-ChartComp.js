@@ -18,7 +18,7 @@ const ChartComp = (props) => {
                 yDomain={{ min: infoData.ymin, max: infoData.ymax }}
                 >
                 <VerticalAxis tickCount={10} theme={{ labels: { formatter: (v) => v.toFixed(2) } }} />
-                <HorizontalAxis tickCount={10} />
+                <HorizontalAxis tickCount={11} />
                 <Area theme={{ gradient: { from: { color: infoData.areaColor }, to: { color: infoData.areaColor, opacity: 0.4 } }}} />
                 <Line theme={{ stroke: { color: infoData.lineColor, width: 5 }, scatter: { default: { width: 4, height: 4, rx: 2 }} }} />
             </Chart>

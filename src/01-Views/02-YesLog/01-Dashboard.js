@@ -15,7 +15,11 @@ const DashboarComp = (props) => {
   const [waterToAdd, setWaterToAdd] = useState('');
 
   let updatedWaterNumbers = {
-    
+    ...waterData,
+    water: [
+      ...waterData.water,
+      { x: 10, y: props.todayWaterIntake }
+    ]
   }
 
 
@@ -31,7 +35,7 @@ const DashboarComp = (props) => {
           According to your measurements you should be drinking {ozFromStore} oz of water each day, today you have drink { props.todayWaterIntake } Oz of water.
         </Text>
 
-        <ChartComp title={'Water Intake'} infoData={waterData} />
+        <ChartComp title={'Water Intake'} infoData={updatedWaterNumbers} />
 
         <TextInput
           label="Add Oz of water"
@@ -44,11 +48,13 @@ const DashboarComp = (props) => {
 
         <Button
           style={{paddingTop: 10, paddingBottom: 10}}
-          mode="outlined"
+          mode="contained"
           onPress={() => {
               console.log('Adding Water')
-              addWater(parseInt(waterToAdd, 10))
-              setWaterToAdd('')
+              if(waterToAdd != ''){
+                addWater(parseInt(waterToAdd, 10))
+                setWaterToAdd('')
+              }
         }}>
           Add Water
         </Button>
