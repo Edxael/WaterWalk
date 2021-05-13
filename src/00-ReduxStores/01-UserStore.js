@@ -2,7 +2,15 @@ import { createStore } from 'redux'
 
 const initialState = {
     isUserLogIn: false,
-    userData: {},
+    userData: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+        water: '',
+        weight: ''
+    },
     clickedParkLocation: {},
     todayWaterIntake: {},
     CalendarDates: {},
