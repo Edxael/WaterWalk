@@ -2,20 +2,27 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 
 import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
-import eventDates from '../../assets/TempData/calDates'
+import { connect } from 'react-redux'
 
-const CalendarComp = (props) => {
+
+const CalendarComp = ({ calendarDates }) => {
+    
     return (
         <View >
-            
             <Calendar
-                markedDates={eventDates}
+                markedDates={calendarDates}
                 // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
                 markingType='multi-period'
-                />
-        
+            />
         </View>
     );
 }
 
-export default CalendarComp 
+
+function mapStateToProps(state) {
+  return {
+    calendarDates: state.calendarDates
+  }
+}
+
+export default connect(mapStateToProps)(CalendarComp);
