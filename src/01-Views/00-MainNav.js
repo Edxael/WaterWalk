@@ -3,19 +3,17 @@ import NoLogNav from './01-NoLog/00-NologNav'
 import YesLogNav from './02-YesLog/00-YesLogNav'
 
 const MainNavigation = () => {
-    let isUserLogIn = true
+    let isUserLogIn = false
 
-    if(isUserLogIn){
+    if (isUserLogIn){
        return (
-            <YesLogNav/>
-    );
-    }else {
-      return (
-          <NoLogNav />
+        <YesLogNav/>
       );
     }
 
-
+    return (
+        <NoLogNav />
+    );
 }
 
 export default MainNavigation;

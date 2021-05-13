@@ -17,12 +17,10 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     accent: '#C3C9E9',
-    background: '#373F47',
     disabled: '#d0d3d9',
-    error: '#ff6161'
+    error: '#ff6161',
     notification: '#f50057',
     onSurface:'#000000',
-    placeholder: '#e3fffa',
     primary: '#58abf5',
     secondary: '#8B89DB',
     surface: '#ebf2f1',
