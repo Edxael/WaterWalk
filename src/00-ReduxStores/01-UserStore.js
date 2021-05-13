@@ -4,7 +4,7 @@ const initialState = {
     isUserLogIn: false,
     userData: {},
     clickedParkLocation: {},
-    todayWaterIntake: {},
+    todayWaterIntake: 76,
     CalendarDates: {},
     waterGraphDate: {},
     walkGraphDates: {},
@@ -28,6 +28,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 userData: action.userData
+            }
+        case 'ADD_TO_TODAYS_WATER':
+            return {
+                ...state,
+                todayWaterIntake: state.todayWaterIntake 
             }
     }
     return state
