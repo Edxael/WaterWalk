@@ -2,6 +2,7 @@ import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import NavBar from '../../02-Components/01-NavBar'
 import ChartComp from '../../02-Components/04-ChartComp'
+import waterData from '../../../assets/TempData/water'
 
 const DashboarComp = (props) => {
   return (
@@ -13,7 +14,7 @@ const DashboarComp = (props) => {
       />
       <View style={styles.container}>
 
-        <ChartComp />
+        <ChartComp title={'Water Intake'} infoData={waterData} />
         
         <Text>
           Dashboard Comp
