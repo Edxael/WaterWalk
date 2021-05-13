@@ -1,16 +1,13 @@
 
 import React, {useState} from 'react';
-import { Text, View } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+import { View } from 'react-native';
+import { TextInput, Button, Title} from 'react-native-paper';
 
 import Login from './01-LogIn'
 
 
 
-const SignUpComponent = (props) => {
-  
-  const { navigation } = props
-
+const SignUpComponent = ({navigation}) => {
   const store = {
     firstName: '',
     lastName: '',
@@ -22,9 +19,9 @@ const SignUpComponent = (props) => {
 
   return (
     <View style={{padding: 10}}>
-      <Text>
-        Create New Account
-      </Text>
+      <Title style={{ marginBottom: 10}}>
+            Create New Account
+      </Title>
 
       <TextInput
         style={{ marginBottom: 10}} 
