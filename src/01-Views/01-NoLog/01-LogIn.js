@@ -18,13 +18,13 @@ const LogInComp = (props) => {
         </Text>
 
         <Button icon="camera" mode="contained" onPress={() => {
-            console.log('Going to SingUp')
-            navigation.navigate('SingUp')
+            console.log('Going to Sign Up')
+            navigation.navigate('SignUp')
         }}>
-            SingUp
+            Sign Up
         </Button>
         <Button icon="camera" mode="contained" onPress={() => {
-            console.log('Going to SingUp')
+            console.log('Going to Sign Up')
             navigation.navigate('ForgoPassword')
         }}>
             ForgotPassword
