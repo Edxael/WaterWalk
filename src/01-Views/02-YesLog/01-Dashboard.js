@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 import NavBar from '../../02-Components/01-NavBar'
 import { connect } from 'react-redux'
 import ChartComp from '../../02-Components/04-ChartComp'
@@ -8,8 +9,14 @@ import walkData from '../../../assets/TempData/walk'
 
 const DashboarComp = (props) => {
 
-  const ozFromStore = 89
+  const { addWater } = props
 
+  const ozFromStore = 89
+  const [waterToAdd, setWaterToAdd] = useState('');
+
+  let updatedWaterNumbers = {
+    
+  }
 
 
   return (
@@ -25,6 +32,26 @@ const DashboarComp = (props) => {
         </Text>
 
         <ChartComp title={'Water Intake'} infoData={waterData} />
+
+        <TextInput
+          label="Add Oz of water"
+          mode="outlined"
+          value={waterToAdd}
+          onChangeText={text => setWaterToAdd(text)}
+          keyboardType="numeric"
+          style={{ marginBottom: 10}}
+        />
+
+        <Button
+          style={{paddingTop: 10, paddingBottom: 10}}
+          mode="outlined"
+          onPress={() => {
+              console.log('Adding Water')
+              addWater(parseInt(waterToAdd, 10))
+              setWaterToAdd('')
+        }}>
+          Add Water
+        </Button>
 
         <ChartComp title={'Walk Steps'} infoData={walkData} />
         
@@ -47,10 +74,12 @@ function mapStateToProps(state) {
 
 function mapDispatcherToProps(dispatch) {
   return {
-    addWater: () => dispatch({ type: 'ADD_TO_TODAYS_WATER' })
+    addWater: (waterToAdd) => dispatch({ type: 'ADD_TO_TODAYS_WATER', waterToAdd })
   }
 }
 
 export default connect(mapStateToProps, mapDispatcherToProps)(DashboarComp)
 
 //{ justifyContent: "center", alignItems: "center" }
+
+// if (/^\d+$/.test(text)) {

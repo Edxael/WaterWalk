@@ -12,7 +12,7 @@ const initialState = {
         weight: ''
     },
     clickedParkLocation: {},
-    todayWaterIntake: 76,
+    todayWaterIntake: 0,
     CalendarDates: {},
     waterGraphDate: {},
     walkGraphDates: {},
@@ -40,7 +40,7 @@ const reducer = (state = initialState, action) => {
         case 'ADD_TO_TODAYS_WATER':
             return {
                 ...state,
-                todayWaterIntake: 99
+                todayWaterIntake: state.todayWaterIntake + action.waterToAdd
             }
         case 'UPDATE_WATER':
             return {
