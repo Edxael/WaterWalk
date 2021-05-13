@@ -1,11 +1,14 @@
 import React from 'react';
 import NoLogNav from './01-NoLog/00-NologNav'
 import YesLogNav from './02-YesLog/00-YesLogNav'
+import { connect } from 'react-redux'
 
-const MainNavigation = () => {
+const MainNavigation = (props) => {
     let isUserLogIn = false
 
-    if (isUserLogIn){
+    console.log("---------------")
+
+    if (props.isUserLogIn){
        return (
         <YesLogNav/>
       );
@@ -16,4 +19,10 @@ const MainNavigation = () => {
     );
 }
 
-export default MainNavigation;
+function mapStateToProps(state) {
+  return {
+    isUserLogIn: state.isUserLogIn
+  }
+}
+
+export default connect(mapStateToProps)(MainNavigation);

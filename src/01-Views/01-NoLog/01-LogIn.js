@@ -2,8 +2,9 @@ import React, { useState }  from 'react';
 import { Text, View } from 'react-native';
 import { Button, Title } from 'react-native-paper';
 import { TextInput } from 'react-native-paper';
+import { connect } from 'react-redux'
 
-const LogIn = ({ navigate }) => {
+const LogIn = ({ navigate, logInUser }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,6 +41,7 @@ const LogIn = ({ navigate }) => {
           style={{ marginBottom: 10, paddingTop: 10, paddingBottom: 10}}
           onPress={() => {
             console.log('Attempting to login', username, password)
+            logInUser()
         }}>
           Log In
         </Button>
@@ -57,6 +59,12 @@ const LogIn = ({ navigate }) => {
   );
 }
 
-export default LogIn;
+function mapDispatcherToProps(dispatch) {
+  return {
+    logInUser: () => dispatch({ type: 'LOGIN_USER' })
+  }
+}
+
+export default connect(null, mapDispatcherToProps)(LogIn);
 
 
