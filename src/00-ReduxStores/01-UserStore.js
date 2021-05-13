@@ -29,6 +29,22 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 userData: action.userData
             }
+        case 'UPDATE_WATER':
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    water: action.water
+                }
+            }
+        case 'UPDATE_WEIGHT':
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    weight: action.weight
+                }
+            }
     }
     return state
 }
