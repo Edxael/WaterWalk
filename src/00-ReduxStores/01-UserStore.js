@@ -2,7 +2,13 @@ import { createStore } from 'redux'
 
 const initialState = {
     isUserLogIn: false,
-    userData: {}
+    userData: {},
+    clickedParkLocation: {},
+    todayWaterIntake: {},
+    CalendarDates: {},
+    waterGraphDate: {},
+    walkGraphDates: {},
+
 }
 
 const reducer = (state = initialState, action) => {
