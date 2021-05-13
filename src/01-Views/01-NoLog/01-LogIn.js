@@ -4,7 +4,7 @@ import { Button, Title } from 'react-native-paper';
 import { TextInput } from 'react-native-paper';
 import { connect } from 'react-redux'
 
-const LogIn = ({ navigate, logInUser }) => {
+const LogIn = ({ navigation, logInUser }) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -49,7 +49,7 @@ const LogIn = ({ navigate, logInUser }) => {
         <Button mode="outlined" style={{paddingTop: 10, paddingBottom: 10}}
           onPress={() => {
             console.log('Sign up clicked')
-            // navigation.navigate('Forgot Password')
+              navigation.navigate('SignUp')
              }
           } >
           Sign Up
