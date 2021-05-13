@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import NavBar from '../../02-Components/01-NavBar'
+import CalendarComp from '../../02-Components/03-CalendarComponent'
 
-const CalendarComp = (props) => {
+const CalendarView = (props) => {
   return (
     <View>
       <NavBar 
@@ -10,14 +11,22 @@ const CalendarComp = (props) => {
       subTitle={"Account"}
       navigation={props.navigation}
       />
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <View style={styles.mainView}>
         
         <Text>
-          Calendar Comp
+          Calendar View
         </Text>
+
+        <CalendarComp />
       </View>
     </View>
   );
 }
 
-export default CalendarComp;
+const styles = StyleSheet.create({
+  mainView: {
+    padding: 10
+  }
+})
+
+export default CalendarView;

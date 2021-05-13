@@ -1,23 +1,40 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 import NavBar from '../../02-Components/01-NavBar'
+import MapComp from '../../02-Components/02-MapComponent'
 
-const MapComp = (props) => {
+const MapView = (props) => {
+
+  // this is the data we will be feeding to the map component.
+  const mapLocation = {
+                        latitude: 40.620723901272896,
+                        longitude: -111.9114044948883,
+                        latitudeDelta: 0.05,
+                        longitudeDelta: 0.05,
+                        }
+
   return (
     <View>
       <NavBar 
-      title={"my title"} 
+      title={"Park Map"} 
       subTitle={"Account"}
       navigation={props.navigation}
       />
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
-        
+
+      <View style={styles.mainView}>
         <Text>
           Map Comp
         </Text>
+        <MapComp location={mapLocation} />
       </View>
     </View>
   );
 }
 
-export default MapComp;
+const styles = StyleSheet.create({
+  mainView: {
+    padding: 15
+  }
+})
+
+export default MapView;

@@ -1,13 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import NavBar from '../../02-Components/01-NavBar'
-import { useTheme, Button } from 'react-native-paper';
+import { useTheme, Menu } from 'react-native-paper';
 
 const ParksComp = (props) => {
-  const { colors } = useTheme();
-  console.log("--[ Colors ]-------------------------")
-  console.log(colors)
-  console.log("---------------------------")
+
   return (
     <View>
       <NavBar 
@@ -15,17 +12,17 @@ const ParksComp = (props) => {
       subTitle={"Account"}
       navigation={props.navigation}
       />
-      <View style={{ justifyContent: "center", alignItems: "center" }}>
+      <View>
+        <Text>List of parks near you</Text>
         
-        <Text>
-          Parks Comp GGGGG
-        </Text>
-         <Text>
-          Second Text
-        </Text>
-        <Button icon="camera" color={colors.secondary} mode="contained" onPress={() => console.log('Pressed')}>
-          Press me
-        </Button>
+        <View>
+          <Menu.Item icon="walk" onPress={() => {}} title="Legacy Park" />
+          <Menu.Item icon="walk" onPress={() => {}} title="Pioneer Park" />
+          <Menu.Item icon="walk" onPress={() => {}} title="Lions Garden" disabled />
+          <Menu.Item icon="walk" onPress={() => {}} title="Indoor Park" disabled />
+          <Menu.Item icon="walk" onPress={() => {}} title="Mountain Trail" />
+        </View>
+        
       </View>
     </View>
   );
