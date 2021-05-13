@@ -1,38 +1,70 @@
-import React, { Component }  from 'react';
+import React, { useState }  from 'react';
 import { Text, View } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Button, Title } from 'react-native-paper';
+import { TextInput } from 'react-native-paper';
+import { connect } from 'react-redux'
 
+const LogIn = ({ navigate, logInUser }) => {
 
-const LogInComp = (props) => {
-    console.log("--[ Props ]-------------------------")
-    console.log(props)
-    console.log("---------------------------")
-    const { navigation } = props
-    console.log("--[ navigation ]-------------------------")
-    console.log(navigation)
-    console.log("---------------------------")
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>
-            LogIn Comp
-        </Text>
+    <View style={{padding: 10}}>
+        <Title style={{ marginBottom: 10}}>
+            Welcome to Water Walk!
+        </Title>
 
-        <Button icon="camera" mode="contained" onPress={() => {
-            console.log('Going to SingUp')
-            navigation.navigate('SingUp')
-        }}>
-            SingUp
+        <TextInput
+          label="Username"
+          mode="outlined"
+          value={username}
+          onChangeText={text => setUsername(text)}
+          style={{ marginBottom: 10}}
+        />
+
+        <TextInput
+          label="Password"
+          value={password}
+          mode="outlined"
+          onChangeText={text => setPassword(text)}
+          style={{ marginBottom: 10}}
+        />
+
+        <Button mode="text" style={{ marginLeft: 'auto'}}
+          onPress={() => {
+            console.log('Forgot Password') }
+          } >
+          Forgot your password?
         </Button>
-        <Button icon="camera" mode="contained" onPress={() => {
-            console.log('Going to SingUp')
-            navigation.navigate('ForgoPassword')
+        <Button mode="contained"
+          style={{ marginBottom: 10, paddingTop: 10, paddingBottom: 10}}
+          onPress={() => {
+            console.log('Attempting to login', username, password)
+            logInUser()
         }}>
-            ForgotPassword
+          Log In
         </Button>
+
+        <Button mode="outlined" style={{paddingTop: 10, paddingBottom: 10}}
+          onPress={() => {
+            console.log('Sign up clicked')
+            // navigation.navigate('Forgot Password')
+             }
+          } >
+          Sign Up
+        </Button>
+
     </View>
   );
 }
 
-export default LogInComp;
+function mapDispatcherToProps(dispatch) {
+  return {
+    logInUser: () => dispatch({ type: 'LOGIN_USER' })
+  }
+}
+
+export default connect(null, mapDispatcherToProps)(LogIn);
 
 
