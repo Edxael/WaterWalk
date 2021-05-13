@@ -32,7 +32,9 @@ const LogIn = ({ navigation, logInUser }) => {
 
         <Button mode="text" style={{ marginLeft: 'auto'}}
           onPress={() => {
-            console.log('Forgot Password') }
+              console.log('Forgot Password')
+              navigation.navigate('ForgotPassword')
+            }
           } >
           Forgot your password?
         </Button>
