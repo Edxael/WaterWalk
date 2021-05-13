@@ -32,7 +32,23 @@ const reducer = (state = initialState, action) => {
         case 'ADD_TO_TODAYS_WATER':
             return {
                 ...state,
-                todayWaterIntake: state.todayWaterIntake 
+                todayWaterIntake: 99
+            }
+        case 'UPDATE_WATER':
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    water: action.water
+                }
+            }
+        case 'UPDATE_WEIGHT':
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    weight: action.weight
+                }
             }
     }
     return state

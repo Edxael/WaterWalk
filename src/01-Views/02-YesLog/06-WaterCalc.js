@@ -4,7 +4,7 @@ import { TextInput, Button, Title } from 'react-native-paper';
 import NavBar from '../../02-Components/01-NavBar'
 import { connect } from 'react-redux'
 
-const WaterComp = (props) => {
+const WaterComp = ({navigation, addWater, addWeigh}) => {
   
   let [calc, setShowCalc] = useState(false)
   let [weight, setWeight] = useState('')
@@ -14,7 +14,7 @@ const WaterComp = (props) => {
       <NavBar 
         title={"my title"} 
         subTitle={"Account"}
-        navigation={props.navigation}
+        navigation={navigation}
       />
 
       <View style={{padding: 10}}>
@@ -43,8 +43,8 @@ const WaterComp = (props) => {
             <View>
               <TextInput
                 style={{ marginBottom: 10}}
-                label="How much do you weigh?"
-                placeholder="How much do you weigh?"
+                label="How much do you weigh (lbs)?"
+                placeholder="How much do you weigh (lbs)?"
                 value={weight}
                 onChangeText={text => setWeight(text)}
                 mode="outlined"
@@ -55,7 +55,9 @@ const WaterComp = (props) => {
                 mode="contained"
                 onPress={() => {
                   if (weight.length > 0) {
-                    setShowCalc(true)
+                    setShowCalc(true);
+                    addWeigh(weight);
+                    addWater(Math.ceil(weight * .67));
                   }
                 }}
                 disabled={!(weight.length > 0)}
@@ -69,4 +71,12 @@ const WaterComp = (props) => {
   );
 }
 
-export default WaterComp;
+function mapDispatcherToProps(dispatch) {
+  return {
+    addWater: (water) => dispatch({ type: 'UPDATE_WATER', water }),
+    addWeigh: (weight) => dispatch({ type: 'UPDATE_WEIGHT', weight })
+  }
+}
+
+export default connect(null, mapDispatcherToProps)(WaterComp);
+
