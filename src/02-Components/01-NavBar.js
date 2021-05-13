@@ -2,7 +2,7 @@ import React from 'react';
 import { Appbar } from 'react-native-paper';
 
 const NavBar = (props) => {
-    const { navigation } = props
+    const { navigation, title, subtitle } = props
     const _goBack = () => console.log('Went back');
 
     const _handleSearch = () => console.log('Searching');
@@ -15,7 +15,7 @@ const NavBar = (props) => {
     return (
         <Appbar.Header>
         <Appbar.BackAction onPress={_goBack} />
-        <Appbar.Content title="Title" subtitle="Subtitle" />
+        <Appbar.Content title={title} subtitle={subtitle} />
         <Appbar.Action icon="magnify" onPress={_handleSearch} />
         <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
         </Appbar.Header>

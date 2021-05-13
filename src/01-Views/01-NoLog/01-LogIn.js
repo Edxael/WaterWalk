@@ -1,25 +1,24 @@
 import React, { useState }  from 'react';
 import { Text, View } from 'react-native';
-import { Button, Title } from 'react-native-paper';
-import { TextInput } from 'react-native-paper';
+import { Button, Headline, TextInput } from 'react-native-paper';
 import { connect } from 'react-redux'
 
 const LogIn = ({ navigation, logInUser }) => {
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   return (
     <View style={{padding: 10}}>
-        <Title style={{ marginBottom: 10}}>
+        <Headline style={{ marginBottom: 10}}>
             Welcome to Water Walk!
-        </Title>
+        </Headline>
 
         <TextInput
-          label="Username"
+          label="Email"
           mode="outlined"
-          value={username}
-          onChangeText={text => setUsername(text)}
+          value={email}
+          onChangeText={text => setEmail(text)}
           style={{ marginBottom: 10}}
         />
 
@@ -40,7 +39,7 @@ const LogIn = ({ navigation, logInUser }) => {
         <Button mode="contained"
           style={{ marginBottom: 10, paddingTop: 10, paddingBottom: 10}}
           onPress={() => {
-            console.log('Attempting to login', username, password)
+            console.log('Attempting to login', email, password)
             logInUser()
         }}>
           Log In
