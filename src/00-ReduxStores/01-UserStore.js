@@ -11,7 +11,9 @@ const reducer = ( state = initialState, action ) => {
         case 'LOG_OUT_USER':
             return { isUserLogIn: false }  
     }
+    return state
 }
+
 
 const userStore = createStore(reducer)
 
