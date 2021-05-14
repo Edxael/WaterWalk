@@ -4,10 +4,10 @@ import { Button, Headline, TextInput, Snackbar} from 'react-native-paper';
 import NavBar from '../../02-Components/01-NavBar'
 import { connect } from 'react-redux'
 
-const AccountComp = ({ userData, updateUserData }) => {
+const AccountComp = ({ userData, updateUserData, navigation }) => {
 
   const [localUserData, setLocalUserData] = useState({...userData})
-  const { navigation, firstName, lastName, email, password } = localUserData
+  const { firstName, lastName, email, password } = localUserData
   const [passwordVisible, setPasswordVisible] = useState(false)
 
   const [snackbarVisible, setSnackbarVisible] = React.useState(false);
