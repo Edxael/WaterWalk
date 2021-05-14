@@ -7,7 +7,7 @@ import { connect } from 'react-redux'
 const AccountComp = ({ userData, updateUserData, navigation }) => {
 
   const [localUserData, setLocalUserData] = useState({...userData})
-  const { firstName, lastName, email, password } = localUserData
+  const { firstName, lastName, email, password, weight, waterIntakeGoal } = localUserData
   const [passwordVisible, setPasswordVisible] = useState(false)
 
   const [snackbarVisible, setSnackbarVisible] = React.useState(false);
@@ -51,6 +51,20 @@ const AccountComp = ({ userData, updateUserData, navigation }) => {
             right={<TextInput.Icon icon={passwordVisible ? 'eye' : 'eye-off'} onPress={() => { setPasswordVisible(!passwordVisible) }} />}
             onChangeText={text => setLocalUserData((previousData) => ({...previousData, password: text}))}
         />
+        <TextInput
+            label="Weight (lbs)"
+            mode="outlined"
+            value={weight}
+            style={{ marginBottom: 10}}
+            onChangeText={text => setLocalUserData((previousData) => ({...previousData, weight: text}))}
+          />
+          <TextInput
+            label="Daily Water Intake Goal (oz)"
+            mode="outlined"
+            value={waterIntakeGoal.toString()}
+            style={{ marginBottom: 10}}
+            onChangeText={text => setLocalUserData((previousData) => ({...previousData, waterIntakeGoal: text}))}
+          />
         <Button mode="contained"
           style={{ marginBottom: 10, paddingTop: 10, paddingBottom: 10}}
           onPress={() => {
@@ -76,13 +90,16 @@ const AccountComp = ({ userData, updateUserData, navigation }) => {
 
 function mapDispatcherToProps(dispatch) {
   return {
-    updateUserData: (userData) => dispatch({ type: 'SIGN_UP_USER', userData })
+    updateUserData: (userData) => dispatch({ type: 'UPDATE_USER_DATA', userData })
   }
 }
 
 function mapStateToProps({ userData }) {
   return {
-    userData: userData
+    userData: {
+      ...userData,
+      weight: userData.weight
+    }
   }
 }
 
