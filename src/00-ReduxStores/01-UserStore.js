@@ -3,13 +3,13 @@ import { createStore } from 'redux'
 const initialState = {
     isUserLogIn: false,
     userData: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        confirmPassword: '',
+        firstName: 'Maximus D.',
+        lastName: 'Meridius',
+        email: 'maximus@zyphex.com',
+        password: 'changeme',
+        confirmPassword: 'changeme',
         water: '',
-        weight: ''
+        weight: '240'
     },
     clickedParkLocation: {},
     todayWaterIntake: 0,
