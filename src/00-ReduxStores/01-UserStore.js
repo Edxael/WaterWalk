@@ -3,12 +3,12 @@ import { createStore } from 'redux'
 const initialState = {
     isUserLogIn: true,
     userData: {
-        firstName: 'Maximus D.',
+        firstName: 'Maximus',
         lastName: 'Meridius',
         email: 'maximus@zyphex.com',
         password: 'changeme',
         confirmPassword: 'changeme',
-        water: '161',
+        waterIntakeGoal: '161',
         weight: '240'
     },
     clickedParkLocation: {},
@@ -16,7 +16,7 @@ const initialState = {
     calendarDates: {
         '2021-04-02': { periods: [ {startingDay: true, endingDay: false, color: '#77ff5c'} ] },
         '2021-04-07': { periods: [ {startingDay: false, endingDay: true, color: '#77ff5c'} ] },
-        '2021-04-22': { periods: [ 
+        '2021-04-22': { periods: [
             {startingDay: false, endingDay: true, color: '#f0e68c'},
             { startingDay: false, endingDay: true, color: '#5f9ea0' }
         ] },
@@ -64,7 +64,7 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 userData: {
                     ...state.userData,
-                    water: action.water
+                    waterIntakeGoal: action.water
                 }
             }
         case 'UPDATE_WEIGHT':

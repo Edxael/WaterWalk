@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { Text, View, ScrollView, StyleSheet, SafeAreaView  } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
+import { Button, TextInput, Headline } from 'react-native-paper';
 import NavBar from '../../02-Components/01-NavBar'
 import { connect } from 'react-redux'
 import ChartComp from '../../02-Components/04-ChartComp'
@@ -9,9 +9,7 @@ import walkData from '../../../assets/TempData/walk'
 
 const DashboarComp = (props) => {
 
-  const { addWater, userWaterGoal } = props
-
-  // const ozFromStore = 89
+  const { addWater, userData } = props
   const [waterToAdd, setWaterToAdd] = useState('');
 
   const randomNubInRange = (min, max) => {
@@ -25,7 +23,7 @@ const DashboarComp = (props) => {
   console.log(dynamicWaterValues)
 
 
-  const graphYmax = parseInt(userWaterGoal, 10) + 40;
+  const graphYmax = parseInt(userData.waterIntakeGoal, 10) + 40;
 
   let updatedWaterNumbers = {
     ...waterData,
@@ -39,16 +37,18 @@ const DashboarComp = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <NavBar 
-      title={"Dashboard"} 
+      <NavBar
+      title={"Dashboard"}
       subTitle={"Account"}
       navigation={props.navigation}
       />
       <ScrollView>
         <View style={styles.mainContainer}>
-          <Text>
-            According to your measurements you should be drinking {userWaterGoal} oz of water each day, today you have drink { props.todayWaterIntake } Oz of water.
-          </Text>
+        <Headline>Welcome {userData.firstName}!</Headline>
+
+        <Text>
+          According to your measurements you should be drinking {userData.waterIntakeGoal} oz of water each day, today you have had { props.todayWaterIntake } Oz of water.
+        </Text>
 
           <ChartComp title={'Water Intake'} infoData={updatedWaterNumbers} />
 
@@ -75,7 +75,7 @@ const DashboarComp = (props) => {
           </Button>
 
           <ChartComp title={'Walk Steps'} infoData={walkData} />
-        
+
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return {
     todayWaterIntake: state.todayWaterIntake,
-    userWaterGoal: state.userData.water
+    userData: state.userData
   }
 }
 
