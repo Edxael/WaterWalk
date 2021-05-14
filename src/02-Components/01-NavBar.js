@@ -4,7 +4,10 @@ import { connect } from 'react-redux'
 
 const NavBar = (props) => {
     const { navigation, title, subtitle, logOutUser } = props
-    const _goBack = () => console.log('Went back');
+    const _goBack = () => {
+        console.log('Went back')
+        navigation.goBack()
+    }
 
 const _handleSearch = () => {
     console.log('Searching');
@@ -18,10 +21,10 @@ const _handleSearch = () => {
 
     return (
         <Appbar.Header>
-        <Appbar.BackAction onPress={_goBack} />
-        <Appbar.Content title={title} subtitle={subtitle} />
-        <Appbar.Action icon="lock" onPress={_handleSearch} />
-        <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
+            <Appbar.BackAction onPress={_goBack} />
+            <Appbar.Content title={title} subtitle={subtitle} />
+            <Appbar.Action icon="lock" onPress={_handleSearch} />
+            <Appbar.Action icon="dots-vertical" onPress={_handleMore} />
         </Appbar.Header>
     );
 }
