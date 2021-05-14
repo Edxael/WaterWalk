@@ -8,7 +8,7 @@ const initialState = {
         email: 'maximus@zyphex.com',
         password: 'changeme',
         confirmPassword: 'changeme',
-        water: '',
+        water: '161',
         weight: '240'
     },
     clickedParkLocation: {},

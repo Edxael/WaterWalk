@@ -9,15 +9,29 @@ import walkData from '../../../assets/TempData/walk'
 
 const DashboarComp = (props) => {
 
-  const { addWater } = props
+  const { addWater, userWaterGoal } = props
 
-  const ozFromStore = 89
+  // const ozFromStore = 89
   const [waterToAdd, setWaterToAdd] = useState('');
+
+  const randomNubInRange = (min, max) => {
+    return Math.random() * (max - min) + min;
+  }
+
+  const dynamicWaterValues = waterData.water.map((element) => {
+    return { x: element.x, y: (element.y + randomNubInRange(-30, 20)).toFixed(2) }
+  })
+
+  console.log(dynamicWaterValues)
+
+
+  const graphYmax = parseInt(userWaterGoal, 10) + 40;
 
   let updatedWaterNumbers = {
     ...waterData,
+    ymax: graphYmax,
     water: [
-      ...waterData.water,
+      ...dynamicWaterValues,
       { x: 10, y: props.todayWaterIntake }
     ]
   }
@@ -33,7 +47,7 @@ const DashboarComp = (props) => {
       <ScrollView>
         <View style={styles.mainContainer}>
           <Text>
-            According to your measurements you should be drinking {ozFromStore} oz of water each day, today you have drink { props.todayWaterIntake } Oz of water.
+            According to your measurements you should be drinking {userWaterGoal} oz of water each day, today you have drink { props.todayWaterIntake } Oz of water.
           </Text>
 
           <ChartComp title={'Water Intake'} infoData={updatedWaterNumbers} />
@@ -80,7 +94,8 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    todayWaterIntake: state.todayWaterIntake
+    todayWaterIntake: state.todayWaterIntake,
+    userWaterGoal: state.userData.water
   }
 }
 
