@@ -11,28 +11,67 @@ const initialState = {
         waterIntakeGoal: '161',
         weight: '240'
     },
-    clickedParkLocation: {},
     todayWaterIntake: 0,
-    calendarDates: {
-        '2021-04-02': { periods: [ {startingDay: true, endingDay: false, color: '#77ff5c'} ] },
-        '2021-04-07': { periods: [ {startingDay: false, endingDay: true, color: '#77ff5c'} ] },
-        '2021-04-22': { periods: [
-            {startingDay: false, endingDay: true, color: '#f0e68c'},
-            { startingDay: false, endingDay: true, color: '#5f9ea0' }
-        ] },
+    // calendarDates: {
+    //     '2021-04-02': { periods: [ {startingDay: true, endingDay: false, color: '#77ff5c'} ] },
+    //     '2021-04-07': { periods: [ {startingDay: false, endingDay: true, color: '#77ff5c'} ] },
+    //     '2021-04-22': { periods: [
+    //         {startingDay: false, endingDay: true, color: '#f0e68c'},
+    //         { startingDay: false, endingDay: true, color: '#5f9ea0' }
+    //     ] },
 
-        '2021-05-04': { periods: [ {startingDay: false, endingDay: false, color: '#35f2e9'} ] },
-        '2021-05-05': { periods: [ {startingDay: false, endingDay: false, color: '#35f2e9'} ] },
-        '2021-05-06': { periods: [ {startingDay: false, endingDay: false, color: '#35f2e9'} ] },
-        '2021-05-07': { periods: [ {startingDay: false, endingDay: true, color: '#35f2e9'} ] },
+    //     '2021-05-04': { periods: [ {startingDay: false, endingDay: false, color: '#35f2e9'} ] },
+    //     '2021-05-05': { periods: [ {startingDay: false, endingDay: false, color: '#35f2e9'} ] },
+    //     '2021-05-06': { periods: [ {startingDay: false, endingDay: false, color: '#35f2e9'} ] },
+    //     '2021-05-07': { periods: [ {startingDay: false, endingDay: true, color: '#35f2e9'} ] },
 
-        '2021-05-17': { periods: [ {startingDay: false, endingDay: false, color: '#3552f2'} ] },
-        '2021-05-18': { periods: [ {startingDay: false, endingDay: false, color: '#3552f2'} ] },
-        '2021-05-19': { periods: [ {startingDay: false, endingDay: false, color: '#3552f2'} ] },
-        '2021-05-20': { periods: [ {startingDay: false, endingDay: true, color: '#3552f2'} ] },
-    },
+    //     '2021-05-17': { periods: [ {startingDay: false, endingDay: false, color: '#3552f2'} ] },
+    //     '2021-05-18': { periods: [ {startingDay: false, endingDay: false, color: '#3552f2'} ] },
+    //     '2021-05-19': { periods: [ {startingDay: false, endingDay: false, color: '#3552f2'} ] },
+    //     '2021-05-20': { periods: [ {startingDay: false, endingDay: true, color: '#3552f2'} ] },
+    // },
     waterGraphDate: {},
     walkGraphDates: {},
+    activityData: {
+        '2021-05-04': {
+            water: 20,
+            steps: 400
+        },
+        '2021-05-05': {
+            water: 20,
+            steps: 400
+        },
+
+        '2021-05-06': {
+            water: null,
+            steps: 400
+        },
+        '2021-05-07': {
+            water: null,
+            steps: 400
+        },
+
+        '2021-05-17': {
+            water: 20,
+            steps: null
+        },
+        '2021-05-18':{
+            water: 20,
+            steps: null
+        },
+        '2021-05-19': {
+            water: 20,
+            steps: null
+        },
+        '2021-05-20': {
+            water: 20,
+            steps: null
+        },
+        '2021-05-28': {
+            water: 87,
+            steps: 7800
+        },
+    }
 
 }
 
