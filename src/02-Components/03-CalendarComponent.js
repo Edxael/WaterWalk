@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Headline } from 'react-native-paper';
 
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import {Calendar} from 'react-native-calendars';
 import { connect } from 'react-redux'
@@ -35,34 +35,46 @@ const CalendarComp = ({ activityData }) => {
               setActivity(activity)
             }
           } />
-      
-      { 
-        date.dateString && activity &&
-          <View>
-            <Headline>
-              Activity for: {date.dateString}
-            </Headline>
-          </View>
-      }
-      {
-        date.dateString && activity?.water &&
-      
-        <Text>
-          Water: {activity.water} oz
-        </Text>
-      }
-      {
-        date.dateString && activity?.steps &&
-      
-        <Text>
-          Steps: {activity.steps}
-        </Text>
-      }
 
+          <View style={styles.dayReport}>
+            { 
+              date.dateString && activity &&
+                <View>
+                  <Headline>
+                    Activity for: {date.dateString}
+                  </Headline>
+                </View>
+            }
+            {
+              date.dateString && activity?.water &&
+            
+              <Text>
+                Water: {activity.water} oz
+              </Text>
+            }
+            {
+              date.dateString && activity?.steps &&
+            
+              <Text>
+                Steps: {activity.steps}
+              </Text>
+            }
+          </View>
       </View>
   );
 }
 
+const styles = StyleSheet.create({
+  dayReport: {
+    borderWidth: 2,
+    borderColor: "#20232a",
+    borderRadius: 6,
+    backgroundColor: "#a3f6ff",
+    padding: 7,
+    height: 100,
+    marginTop: 25
+  }
+})
 
 function mapStateToProps(state) {
   return {
