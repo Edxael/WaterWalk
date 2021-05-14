@@ -18,6 +18,8 @@ import {
   NONCE_KEY
 } from "../../../config.js";
 
+let tempSessionObject;
+
 const generateNonce = async () => {
   console.log("==[ 0 - 1 ]==")
   const nonce = String.fromCharCode.apply(
@@ -46,6 +48,7 @@ const LogIn = ({ navigation, logInUser }) => {
           console.log("--[ sessionObj ]-----------------------------------")
           console.log(sessionObj)
           console.log("-------------------------------------")
+          tempSessionObject = sessionObj
         }
       }
     });
@@ -98,7 +101,7 @@ const LogIn = ({ navigation, logInUser }) => {
     SecureStore.getItemAsync(NONCE_KEY).then(storedNonce => {
       console.log("==[ 3 - DT - 4 ]==")
       if (nonce == storedNonce) {
-        console.log("==[ 3 - DT - 5 ]==")
+        
         SecureStore.setItemAsync(
           ID_TOKEN_KEY,
           JSON.stringify({
@@ -120,7 +123,10 @@ const LogIn = ({ navigation, logInUser }) => {
   };
 
   const handleLogoutPress = () => {
-    SecureStore.deleteItemAsync(ID_TOKEN_KEY).then(onLogout);
+    // SecureStore.deleteItemAsync(ID_TOKEN_KEY).then(onLogout);
+    console.log('Deleting the ID-Tokent-key')
+    // SecureStore.deleteItemAsync(ID_TOKEN_KEY)
+    AuthSession.revokeAsync(tempSessionObject)
   };
 
 
@@ -159,7 +165,8 @@ const LogIn = ({ navigation, logInUser }) => {
         <Button mode="outlined" style={{paddingTop: 10, paddingBottom: 10}}
           onPress={() => {
             console.log('Sign up clicked')
-              navigation.navigate('SignUp')
+              // navigation.navigate('SignUp')
+              handleLogoutPress()
              }
           } >
           Sign Up
