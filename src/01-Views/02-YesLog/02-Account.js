@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import { Button, Headline, TextInput, Snackbar} from 'react-native-paper';
 import NavBar from '../../02-Components/01-NavBar'
@@ -7,12 +7,15 @@ import { connect } from 'react-redux'
 const AccountComp = ({ userData, updateUserData, navigation }) => {
 
   const [localUserData, setLocalUserData] = useState({...userData})
-  const { firstName, lastName, email, password, weight, waterIntakeGoal } = localUserData
   const [passwordVisible, setPasswordVisible] = useState(false)
-
   const [snackbarVisible, setSnackbarVisible] = React.useState(false);
   const onToggleSnackBar = () => setSnackbarVisible(!snackbarVisible);
   const onDismissSnackBar = () => setSnackbarVisible(false);
+  const { firstName, lastName, email, password, weight, waterIntakeGoal } = localUserData
+
+  useEffect(() => {
+    setLocalUserData(userData)
+  }, [userData])
 
   return (
     <View style={{height: '100%'}}>
@@ -98,7 +101,6 @@ function mapStateToProps({ userData }) {
   return {
     userData: {
       ...userData,
-      weight: userData.weight
     }
   }
 }
