@@ -3,7 +3,7 @@ import { createStore } from 'redux'
 const initialState = {
     isUserLogIn: true,
     userData: {
-        firstName: 'Maximus D',
+        firstName: 'Maximus',
         lastName: 'Meridius',
         email: 'maximus@zyphex.com',
         password: 'changeme',

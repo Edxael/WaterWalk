@@ -12,10 +12,24 @@ const DashboarComp = (props) => {
   const { addWater, userData } = props
   const [waterToAdd, setWaterToAdd] = useState('');
 
+  const randomNubInRange = (min, max) => {
+    return Math.random() * (max - min) + min;
+  }
+
+  const dynamicWaterValues = waterData.water.map((element) => {
+    return { x: element.x, y: (element.y + randomNubInRange(-30, 20)).toFixed(2) }
+  })
+
+  console.log(dynamicWaterValues)
+
+
+  const graphYmax = parseInt(userData.waterIntakeGoal, 10) + 40;
+
   let updatedWaterNumbers = {
     ...waterData,
+    ymax: graphYmax,
     water: [
-      ...waterData.water,
+      ...dynamicWaterValues,
       { x: 10, y: props.todayWaterIntake }
     ]
   }
