@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
-import { Button, Headline, TextInput } from 'react-native-paper';
+import { Button, Headline, TextInput, Snackbar} from 'react-native-paper';
 import NavBar from '../../02-Components/01-NavBar'
 import { connect } from 'react-redux'
 
-const AccountComp = ({ navigation, firstName, lastName, email, password }) => {
+const AccountComp = ({ userData, updateUserData, navigation }) => {
 
+  const [localUserData, setLocalUserData] = useState({...userData})
+  const { firstName, lastName, email, password } = localUserData
   const [passwordVisible, setPasswordVisible] = useState(false)
 
+  const [snackbarVisible, setSnackbarVisible] = React.useState(false);
+  const onToggleSnackBar = () => setSnackbarVisible(!snackbarVisible);
+  const onDismissSnackBar = () => setSnackbarVisible(false);
+
   return (
-    <View>
+    <View style={{height: '100%'}}>
       <NavBar
         title={"Account"}
         navigation={navigation}
@@ -19,58 +25,65 @@ const AccountComp = ({ navigation, firstName, lastName, email, password }) => {
             label="Email"
             mode="outlined"
             value={email}
-            disabled
             style={{ marginBottom: 10}}
+            onChangeText={text => setLocalUserData((previousData) => ({...previousData, email: text}))}
           />
         <TextInput
             label="First Name"
             mode="outlined"
             value={firstName}
-            disabled
             style={{ marginBottom: 10}}
+            onChangeText={text => setLocalUserData((previousData) => ({...previousData, firstName: text}))}
           />
           <TextInput
             label="Last Name"
             mode="outlined"
             value={lastName}
-            disabled
             style={{ marginBottom: 10}}
+            onChangeText={text => setLocalUserData((previousData) => ({...previousData, lastName: text}))}
           />
         <TextInput
             label="Password"
             mode="outlined"
             value={passwordVisible ? password : '********'}
-            disabled
             style={{ marginBottom: 10}}
+            disabled={!passwordVisible}
             right={<TextInput.Icon icon={passwordVisible ? 'eye' : 'eye-off'} onPress={() => { setPasswordVisible(!passwordVisible) }} />}
+            onChangeText={text => setLocalUserData((previousData) => ({...previousData, password: text}))}
         />
+        <Button mode="contained"
+          style={{ marginBottom: 10, paddingTop: 10, paddingBottom: 10}}
+          onPress={() => {
+            console.log('Saving user data')
+            updateUserData(localUserData)
+            onToggleSnackBar()
+            setPasswordVisible(false)
+        }}>
+          Save
+        </Button>
 
-        <TextInput
-          label="Height (inches)"
-          mode="outlined"
-          value="72"
-          disabled
-          style={{ marginBottom: 10}}
-        />
-        <TextInput
-          label="Weight (Lbs)"
-          mode="outlined"
-          value="180"
-          disabled
-          style={{ marginBottom: 10}}
-        />
       </View>
+        <Snackbar
+          visible={snackbarVisible}
+          onDismiss={onDismissSnackBar}
+          duration={1000}
+          >
+          Saved successfully.
+      </Snackbar>
     </View>
   );
 }
 
-function mapStateToProps({ userData }) {
+function mapDispatcherToProps(dispatch) {
   return {
-    firstName: userData.firstName,
-    lastName: userData.lastName,
-    email: userData.email,
-    password: userData.password,
+    updateUserData: (userData) => dispatch({ type: 'SIGN_UP_USER', userData })
   }
 }
 
-export default connect(mapStateToProps)(AccountComp);
+function mapStateToProps({ userData }) {
+  return {
+    userData: userData
+  }
+}
+
+export default connect(mapStateToProps, mapDispatcherToProps)(AccountComp);

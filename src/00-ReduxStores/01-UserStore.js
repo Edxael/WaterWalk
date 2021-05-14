@@ -11,7 +11,8 @@ const initialState = {
         water: '',
         weight: ''
     },
-    todayWaterIntake: {},
+    clickedParkLocation: {},
+    todayWaterIntake: 0,
     calendarDates: {
         '2021-04-02': { periods: [ {startingDay: true, endingDay: false, color: '#77ff5c'} ] },
         '2021-04-07': { periods: [ {startingDay: false, endingDay: true, color: '#77ff5c'} ] },
@@ -53,6 +54,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 userData: action.userData
             }
+        case 'ADD_TO_TODAYS_WATER':
+            return {
+                ...state,
+                todayWaterIntake: state.todayWaterIntake + action.waterToAdd
+            }
         case 'UPDATE_WATER':
             return {
                 ...state,
@@ -69,6 +75,14 @@ const reducer = (state = initialState, action) => {
                     weight: action.weight
                 }
             }
+        case 'UPDATE_USER_DATA':
+          return {
+              ...state,
+              userData: {
+                ...state.userData,
+                ...action.userData,
+              }
+          }
     }
     return state
 }
