@@ -2,25 +2,26 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import NavBar from '../../02-Components/01-NavBar'
 import { useTheme, Menu } from 'react-native-paper';
+import parks from '../../../assets/TempData/parks'
 
-const ParksComp = (props) => {
-
+const ParksComp = ({navigation}) => {
   return (
     <View>
       <NavBar 
       title={"my title"} 
       subTitle={"Account"}
-      navigation={props.navigation}
+      navigation={navigation}
       />
       <View>
-        <Text>List of parks near you</Text>
-        
+        <Text>List of parks near you.</Text>
         <View>
-          <Menu.Item icon="walk" onPress={() => {}} title="Legacy Park" />
-          <Menu.Item icon="walk" onPress={() => {}} title="Pioneer Park" />
-          <Menu.Item icon="walk" onPress={() => {}} title="Lions Garden" disabled />
-          <Menu.Item icon="walk" onPress={() => {}} title="Indoor Park" disabled />
-          <Menu.Item icon="walk" onPress={() => {}} title="Mountain Trail" />
+          {
+            parks.map((park,idx) =>
+              <Menu.Item icon="walk" key={idx} onPress={() => {
+                navigation.navigate('MapView',{park})
+              }} title={park.name}/>
+            )
+          }
         </View>
         
       </View>

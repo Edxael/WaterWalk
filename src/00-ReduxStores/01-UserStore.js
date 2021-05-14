@@ -11,7 +11,6 @@ const initialState = {
         water: '',
         weight: ''
     },
-    clickedParkLocation: {},
     todayWaterIntake: {},
     calendarDates: {
         '2021-04-02': { periods: [ {startingDay: true, endingDay: false, color: '#77ff5c'} ] },
