@@ -1,11 +1,8 @@
 
 import React, {useState} from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 import { TextInput, Button, Title } from 'react-native-paper';
 import { connect } from 'react-redux'
-
-import Login from './01-LogIn'
-
 
 
 const SignUpComponent = ({navigation,signInUser, logInUser}) => {
@@ -21,7 +18,7 @@ const SignUpComponent = ({navigation,signInUser, logInUser}) => {
   
 
   return (
-    <View style={{padding: 10}}>
+    <ScrollView style={{padding: 10}}>
       <Title style={{ marginBottom: 10}}>
             Create New Account
       </Title>
@@ -95,7 +92,7 @@ const SignUpComponent = ({navigation,signInUser, logInUser}) => {
       </Button>
 
 
-    </View>
+    </ScrollView>
   );
 }
 
