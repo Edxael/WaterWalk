@@ -21,7 +21,7 @@ const DashboarComp2 = () => {
               <Drawer.Screen name="Account" component={Account} />
               <Drawer.Screen name="WaterCalc" options={{ drawerLabel: 'Water Calculator' }} component={WaterCalc} />
               <Drawer.Screen name="Calendar" component={Calendar} />
-              <Drawer.Screen name="Parks" component={Parks} />
+              <Drawer.Screen name="Locations" component={Parks} />
               <Drawer.Screen name="MapView" options={() => ({drawerLabel: () => null})} component={MapView} />
           </Drawer.Navigator>
       </NavigationContainer>

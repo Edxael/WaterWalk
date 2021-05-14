@@ -15,15 +15,13 @@ const MapView = ({ navigation, route }) => {
   return (
     <View>
       <NavBar 
-        title={"Park Map"} 
+        title={route.params.park.name} 
         subTitle={"Account"}
         navigation={navigation}
       />
 
       <View style={styles.mainView}>
-        <Text>
-          Map Comp
-        </Text>
+
         <MapComp location={mapLocation} />
       </View>
     </View>

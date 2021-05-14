@@ -8,7 +8,7 @@ const ParksComp = ({navigation}) => {
   return (
     <View>
       <NavBar 
-      title={"my title"} 
+      title={"Locations"} 
       subTitle={"Account"}
       navigation={navigation}
       />

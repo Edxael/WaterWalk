@@ -7,15 +7,11 @@ const CalendarView = (props) => {
   return (
     <View>
       <NavBar 
-      title={"my title"} 
+      title={"Calendar"} 
       subTitle={"Account"}
       navigation={props.navigation}
       />
       <View style={styles.mainView}>
-        
-        <Text>
-          Calendar View
-        </Text>
 
         <CalendarComp />
       </View>
