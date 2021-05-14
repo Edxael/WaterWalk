@@ -20,9 +20,6 @@ const DashboarComp = (props) => {
     return { x: element.x, y: (element.y + randomNubInRange(-30, 20)).toFixed(2) }
   })
 
-  console.log(dynamicWaterValues)
-
-
   const graphYmax = parseInt(userData.waterIntakeGoal, 10) + 40;
 
   let updatedWaterNumbers = {
