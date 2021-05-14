@@ -1,7 +1,7 @@
 import { createStore } from 'redux'
 
 const initialState = {
-    isUserLogIn: false,
+    isUserLogIn: true,
     userData: {
         firstName: '',
         lastName: '',

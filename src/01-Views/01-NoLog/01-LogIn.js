@@ -3,9 +3,6 @@ import { Text, View, Alert, Image, StyleSheet } from 'react-native';
 import { Button, Headline, TextInput } from 'react-native-paper';
 import { connect } from 'react-redux'
 
-
-// -------------------------------------------------
-// import { AuthSession } from "expo";
 import * as AuthSession from 'expo-auth-session';
 import * as Random from "expo-random";
 import * as SecureStore from "expo-secure-store";
@@ -21,85 +18,35 @@ import {
 let tempSessionObject;
 
 const generateNonce = async () => {
-  console.log("==[ 0 - 1 ]==")
   const nonce = String.fromCharCode.apply(
     null,
     await Random.getRandomBytesAsync(16)
   );
-  console.log("==[ 0 - 2 ]==")
   await SecureStore.setItemAsync(NONCE_KEY, nonce);
-  console.log("==[ 0 - 3 ]==")
   return nonce;
 };
-// -------------------------------------------------
 
 const LogIn = ({ navigation, logInUser }) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  // -------------------------------------------------
-  useEffect(() => {
+  const reviewAuthData = () => {
     SecureStore.getItemAsync(ID_TOKEN_KEY).then(session => {
       if (session) {
         const sessionObj = JSON.parse(session);
         if (sessionObj.exp > Math.floor(new Date().getTime() / 1000)) {
-          // setIsLoggedIn(true);
-          console.log("--[ sessionObj ]-----------------------------------")
-          console.log(sessionObj)
-          console.log("-------------------------------------")
-          tempSessionObject = sessionObj
+          logInUser()
         }
       }
     });
-  }, []);
+  }
 
-
-        // -----------   ----   ---  --  -- -- ---  --
-
-  const handleLoginPress = async () => {
-    console.log("==[ 0 ]==")
-    const nonce = await generateNonce();
-    // const nonce = 'jhgjhghhkjhdslfhldksajfhlkas'
-    console.log("==[ 1 ]==")
-    AuthSession.startAsync({
-      authUrl:
-        `${AUTH_DOMAIN}/authorize?` +
-        queryString.stringify({
-          client_id: AUTH_CLIENT_ID,
-          response_type: "id_token",
-          scope: "openid profile email",
-          redirect_uri: AuthSession.getRedirectUrl(),
-          nonce
-        })
-    }).then(result => {
-      console.log("==[ 2 ]==")
-      if (result.type === "success") {
-        console.log("==[ 3 ]==")
-        decodeToken(result.params.id_token);
-      } else if (result.params && result.params.error) {
-        console.log("==[ 2 - Err ]==")
-        Alert.alert(
-          "Error",
-          result.params.error_description ||
-            "Something went wrong while logging in."
-        );
-      }
-    }).catch(err => { 
-      console.log("==[ Error in AuthSession.startAsync ]====")
-      console.log(err) 
-    })
-  };
 
   const decodeToken = token => {
-    console.log("==[ 3 - DT - 1 ]==")
     const decodedToken = jwtDecoder(token);
-    console.log("==[ 3 - DT - 2 ]==")
     const { nonce, sub, email, name, exp } = decodedToken;
-
-    console.log("==[ 3 - DT - 3 ]==")
     SecureStore.getItemAsync(NONCE_KEY).then(storedNonce => {
-      console.log("==[ 3 - DT - 4 ]==")
       if (nonce == storedNonce) {
         
         SecureStore.setItemAsync(
@@ -112,26 +59,49 @@ const LogIn = ({ navigation, logInUser }) => {
             token
           })
         ).then(() => {
-          logInUser()
+          reviewAuthData()
+          // logInUser()
         });
       } else {
-        console.log("==[ 3 - DT - Err ]==")
-        Alert.alert("Error", "Nonces don't match");
         return;
       }
     });
   };
 
-  const handleLogoutPress = () => {
-    // SecureStore.deleteItemAsync(ID_TOKEN_KEY).then(onLogout);
-    console.log('Deleting the ID-Tokent-key')
-    // SecureStore.deleteItemAsync(ID_TOKEN_KEY)
-    AuthSession.revokeAsync(tempSessionObject)
+  const handleLoginPress = async () => {
+    const nonce = await generateNonce();
+    AuthSession.startAsync({
+      authUrl:
+        `${AUTH_DOMAIN}/authorize?` +
+        queryString.stringify({
+          client_id: AUTH_CLIENT_ID,
+          response_type: "id_token",
+          scope: "openid profile email",
+          redirect_uri: AuthSession.getRedirectUrl(),
+          nonce
+        })
+    }).then(result => {
+      if (result.type === "success") {
+        decodeToken(result.params.id_token);
+      } else if (result.params && result.params.error) {
+        Alert.alert(
+          "Error",
+          result.params.error_description ||
+            "Something went wrong while logging in."
+        );
+      }
+    }).catch(err => { 
+      console.log("==[ Error in AuthSession.startAsync ]====")
+      console.log(err) 
+    })
   };
 
 
+  const handleLogoutPress = () => {
+    console.log('Deleting the ID-Tokent-key')
 
-  // -------------------------------------------------
+    SecureStore.deleteItemAsync()
+  };
 
   return (
     <View style={{padding: 10}}>
@@ -165,8 +135,7 @@ const LogIn = ({ navigation, logInUser }) => {
         <Button mode="outlined" style={{paddingTop: 10, paddingBottom: 10}}
           onPress={() => {
             console.log('Sign up clicked')
-              // navigation.navigate('SignUp')
-              handleLogoutPress()
+              navigation.navigate('SignUp')
              }
           } >
           Sign Up
