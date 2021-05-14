@@ -1,19 +1,18 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import NavBar from '../../02-Components/01-NavBar'
-import { useTheme, Menu } from 'react-native-paper';
+import { Menu, Title } from 'react-native-paper';
 import parks from '../../../assets/TempData/parks'
 
 const ParksComp = ({navigation}) => {
   return (
     <View>
-      <NavBar 
-      title={"Locations"} 
-      subTitle={"Account"}
+      <NavBar
+      title={"Locations"}
       navigation={navigation}
       />
       <View>
-        <Text>List of parks near you.</Text>
+        <Title style={{ padding: 10 }}>List of locations near you.</Title>
         <View>
           {
             parks.map((park,idx) =>
@@ -23,7 +22,7 @@ const ParksComp = ({navigation}) => {
             )
           }
         </View>
-        
+
       </View>
     </View>
   );
