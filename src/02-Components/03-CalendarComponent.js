@@ -1,9 +1,9 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { Headline } from 'react-native-paper';
 
 import { View, Text } from 'react-native';
 
-import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
+import {Calendar} from 'react-native-calendars';
 import { connect } from 'react-redux'
 
 
@@ -11,7 +11,6 @@ const CalendarComp = ({ activityData }) => {
   
   let [activity, setActivity] = useState({})
   let [date, setDate] = useState({})
-
   const keys = Object.keys(activityData)
 
   let calDates = {}
@@ -31,16 +30,9 @@ const CalendarComp = ({ activityData }) => {
             // Date marking style [simple/period/multi-dot/custom]. Default = 'simple'
             markingType='multi-period'
             onDayPress={day => {
-              console.log("Day", day)
-              console.log("activityData", activityData)
               setDate(day)
-
-
               const activity = activityData[day.dateString]
-              console.log("activity", activity)
-
               setActivity(activity)
-
             }
           } />
       
